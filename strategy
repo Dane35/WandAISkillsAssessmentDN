@@ -26,3 +26,5 @@ Risks
 As with any 3rd party service, our integrations with the open API and Agent will need to account for service outages and any security vulnerabilities the 3rd parties may have. The team will need to build adequate protections for any weak points in the integration paths. 
 
 I am concerned with denial of service attacks against the open web app UI and api. The agent has built in limiters to limit this attack vector.
+
+Tracability Matrix
