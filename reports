@@ -1,1 +1,26 @@
+BUG-001
+Home Page Links do not navigate the the appropriate pages
+PROD
+Sev 3
+        STEPS - 1. Navigate to https://sauce-demo.myshopify.com/, 2.click wishlist and/or refer a friend links on the left menu
+        Expected - User is navigated to the correct page
+        Actual - User remains on the home page, url updates
+Fix Path - refer a friend and wishlist may not have been implemented yet, if this is the case, remove the links from the home page while they are being worked
 
+BUG-002
+Cart does not load when white sandals are added
+PROD
+Sev 1
+        STEPS - 1. Navigate to https://sauce-demo.myshopify.com/, 2.click catalog, white sandals 3. add sandals to the cart
+        Expected - Cart displays with white sandals as the only item
+        Actual - Cart does not load, null property error in console
+Fix Path - White sandals may be missing an atribute from when it was added, we should require these when creating items to avoid this issue in the future
+
+BUG-003
+Footer duplicates info in About Us link
+PROD
+Sev 4
+        STEPS - 1. Navigate to https://sauce-demo.myshopify.com/, 2.click about us link
+        Expected - About us page displays with unique data
+        Actual - Footer already has this information
+Fix Path - Remove the duplicate info from the footer
