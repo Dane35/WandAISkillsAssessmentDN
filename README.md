@@ -1,5 +1,6 @@
 # WandAISkillsAssessmentDN
 Skills Assessment for WandAI prepared by Dane Nye
+Trade offs - In order to complete the assessment with in the time given, I utilized AI tools to generate test code. This gave me more time to review the tests and make changes where needed. I was able to generate these tests using only free tools and careful prompts. I also have not done a formal AI Evluation before this assessment, I used AI tools to generate an AI EVAL and included my own first pass in agent-evals.
 
 # Sauce Demo E2E Tests
 
