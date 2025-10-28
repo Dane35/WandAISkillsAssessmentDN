@@ -77,7 +77,7 @@ npm run report
 ## Test Structure
 
 ```
-├── tests/
+├── test/
 │   └── sauce-demo.spec.ts     # Main test suite
 ├── playwright.config.ts        # Playwright configuration
 ├── package.json               # Dependencies and scripts
@@ -271,13 +271,11 @@ For issues with these tests, please check:
 **Happy Testing!** 🧪
 
 ## How to Run the Performance Test
-
-1. Save the code to a file (e.g., `performance_test.py`)
-2. Install required dependencies:
+1. Install required dependencies:
    ```bash
    pip install requests
    ```
-3. Run the test:
+2. Run the test:
    ```bash
    python performance_test.py
    ```
