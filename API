@@ -1,0 +1,163 @@
+# To run these tests:
+# pytest test_sauce_demo.py -v
+API Tests
+
+import requests
+import json
+import pytest
+
+BASE_URL = "http://httpbin.org"
+
+def test_get_request():
+    """Test GET request to httpbin.org"""
+    response = requests.get(f"{BASE_URL}/get")
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert 'url' in data
+    assert 'headers' in data
+    assert data['url'] == f"{BASE_URL}/get"
+
+def test_post_request():
+    """Test POST request with JSON data"""
+    payload = {"name": "test", "value": 123}
+    response = requests.post(f"{BASE_URL}/post", json=payload)
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert 'json' in data
+    assert data['json'] == payload
+    assert data['headers']['Content-Type'] == 'application/json'
+
+def test_put_request():
+    """Test PUT request"""
+    payload = {"update": "test_data", "id": 456}
+    response = requests.put(f"{BASE_URL}/put", json=payload)
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert data['json'] == payload
+
+def test_delete_request():
+    """Test DELETE request"""
+    response = requests.delete(f"{BASE_URL}/delete")
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert 'url' in data
+
+def test_query_parameters():
+    """Test GET request with query parameters"""
+    params = {
+        'key1': 'value1',
+        'key2': 'value2',
+        'number': 123
+    }
+    response = requests.get(f"{BASE_URL}/get", params=params)
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert 'args' in data
+    assert data['args']['key1'] == 'value1'
+    assert data['args']['key2'] == 'value2'
+    assert data['args']['number'] == '123'  # Query params are strings
+
+def test_custom_headers():
+    """Test request with custom headers"""
+    headers = {
+        'X-Custom-Header': 'test-value',
+        'Authorization': 'Bearer token123'
+    }
+    response = requests.get(f"{BASE_URL}/headers", headers=headers)
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert 'headers' in data
+    assert data['headers']['X-Custom-Header'] == 'test-value'
+    assert data['headers']['Authorization'] == 'Bearer token123'
+
+def test_status_code_check():
+    """Test different HTTP status codes"""
+    # Test 404 status
+    response = requests.get(f"{BASE_URL}/status/404")
+    assert response.status_code == 404
+    
+    # Test 500 status
+    response = requests.get(f"{BASE_URL}/status/500")
+    assert response.status_code == 500
+    
+    # Test 200 status
+    response = requests.get(f"{BASE_URL}/status/200")
+    assert response.status_code == 200
+
+def test_user_agent():
+    """Test user agent endpoint"""
+    custom_user_agent = "MyTestClient/1.0"
+    headers = {'User-Agent': custom_user_agent}
+    response = requests.get(f"{BASE_URL}/user-agent", headers=headers)
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert 'user-agent' in data
+    assert data['user-agent'] == custom_user_agent
+
+def test_ip_address():
+    """Test IP address endpoint"""
+    response = requests.get(f"{BASE_URL}/ip")
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert 'origin' in data
+    assert isinstance(data['origin'], str)
+    assert len(data['origin']) > 0
+
+def test_delay_request():
+    """Test delayed response"""
+    import time
+    
+    start_time = time.time()
+    response = requests.get(f"{BASE_URL}/delay/2")  # 2 second delay
+    end_time = time.time()
+    
+    assert response.status_code == 200
+    assert (end_time - start_time) >= 2  # Should take at least 2 seconds
+
+# Optional: Run tests if script is executed directly
+if __name__ == "__main__":
+    # You can run individual tests like this:
+    try:
+        test_get_request()
+        print("✓ GET request test passed")
+        
+        test_post_request()
+        print("✓ POST request test passed")
+        
+        test_put_request()
+        print("✓ PUT request test passed")
+        
+        test_delete_request()
+        print("✓ DELETE request test passed")
+        
+        test_query_parameters()
+        print("✓ Query parameters test passed")
+        
+        test_custom_headers()
+        print("✓ Custom headers test passed")
+        
+        test_status_code_check()
+        print("✓ Status code test passed")
+        
+        test_user_agent()
+        print("✓ User agent test passed")
+        
+        test_ip_address()
+        print("✓ IP address test passed")
+        
+        test_delay_request()
+        print("✓ Delay request test passed")
+        
+        print("\nAll tests passed! 🎉")
+        
+    except Exception as e:
+        print(f"❌ Test failed: {e}")
+
