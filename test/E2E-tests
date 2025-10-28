@@ -1,4 +1,14 @@
 import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+test.describe('homepage', () => { // 2
+  test('should not have any automatically detectable accessibility issues', async ({ page }) => {
+    await page.goto('https://your-site.com/'); // 3
+
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze(); // 4
+
+    expect(accessibilityScanResults.violations).toEqual([]); // 5
+  });
 
 test.describe('Sauce Demo Website', () => {
   test('should navigate to Log In page', async ({ page }) => {
@@ -33,87 +43,3 @@ test.describe('Sauce Demo Website', () => {
     await expect(page).toHaveTitle(/Grey jacket/);
   });
 
-def test_homepage_loads_successfully(page: Page):
-    page.goto("https://sauce-demo.myshopify.com/")
-    
-    # Verify page title
-    expect(page).to_have_title(re.compile("Sauce Demo"))
-    
-    # Verify key elements are present
-    expect(page.get_by_text("Just a demo site showing off what Sauce can do.")).to_be_visible()
-    expect(page.get_by_text("Grey jacket")).to_be_visible()
-    expect(page.get_by_text("Noir jacket")).to_be_visible()
-    expect(page.get_by_text("Striped top")).to_be_visible()
-    
-    # Verify navigation menu
-    expect(page.get_by_text("Home")).to_be_visible()
-    expect(page.get_by_text("Catalog")).to_be_visible()
-    expect(page.get_by_text("Blog")).to_be_visible()
-    expect(page.get_by_text("About Us")).to_be_visible()
-
-def test_product_browsing(page: Page):
-    """Test browsing products in the catalog"""
-    page.goto("https://sauce-demo.myshopify.com/")
-    
-    # Navigate to catalog
-    page.get_by_text("Catalog").click()
-    
-    # Verify products are displayed
-    expect(page.get_by_text("Grey jacket", exact=False)).to_be_visible()
-    expect(page.get_by_text("£55.00")).to_be_visible()
-    
-    expect(page.get_by_text("Noir jacket", exact=False)).to_be_visible()
-    expect(page.get_by_text("£60.00")).to_be_visible()
-    
-    expect(page.get_by_text("Striped top", exact=False)).to_be_visible()
-    expect(page.get_by_text("£50.00")).to_be_visible()
-
-def test_add_to_cart_functionality(page: Page):
-    """Test adding a product to cart"""
-    page.goto("https://sauce-demo.myshopify.com/")
-    
-    # Add first product to cart
-    grey_jacket = page.get_by_text("Grey jacket")
-    grey_jacket.hover()
-    # Assuming there's an "Add to Cart" button that appears on hover
-    # Since we can't see the exact button in the content, we'll try to find a general add to cart button
-    # This might need adjustment based on actual site implementation
-    
-    # Check initial cart count
-    cart_count = page.locator("text=My Cart (0)")
-    expect(cart_count).to_be_visible()
-    
-    # Since we can't see the exact add to cart mechanism in the provided content,
-    # we'll simulate what would typically happen
-    # In a real implementation, you would click an "Add to Cart" button here
-
-def test_about_us_page(page: Page):
-    """Test navigation to and content of About Us page"""
-    page.goto("https://sauce-demo.myshopify.com/")
-    
-    # Navigate to About Us page
-    page.get_by_text("About Us").click()
-    
-    # Verify page content
-    expect(page.get_by_text("This is a demo site created for Sauce")).to_be_visible()
-    expect(page.get_by_text("an awesome new way to make your Shopify site social")).to_be_visible()
-    expect(page.get_by_text("Sauce allows you to let customers to share what they purchase to their friends")).to_be_visible()
-
-def test_search_functionality(page: Page):
-    """Test the search functionality"""
-    page.goto("https://sauce-demo.myshopify.com/")
-    
-    # Find and use search functionality
-    search_box = page.get_by_placeholder("Search")
-    search_box.fill("jacket")
-    search_box.press("Enter")
-    
-    # Verify search results page loads
-    # Since we don't have the exact search results page content, 
-    # we check for elements that would typically appear
-    expect(page).to_have_url(re.compile(r"search"))
-    
-    # Verify that relevant products appear in search
-    # This would need to be adjusted based on actual search implementation
-    # expect(page.get_by_text("Grey jacket")).to_be_visible()
-    # expect(page.get_by_text("Noir jacket")).to_be_visible()
