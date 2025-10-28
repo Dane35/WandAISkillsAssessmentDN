@@ -197,4 +197,34 @@ For issues with these tests, please check:
 
 **Happy Testing!** 🧪
 
+## How to Run the Performance
+
+1. Save the code to a file (e.g., `performance_test.py`)
+2. Install required dependencies:
+   ```bash
+   pip install requests
+   ```
+3. Run the test:
+   ```bash
+   python performance_test.py
+   ```
+
+## What This Test Does
+
+- Sends 1 HTTP GET request per second for 60 seconds (60 requests total)
+- Measures response times for each request
+- Tracks successful and failed requests
+- Calculates performance statistics (average, median, 95th percentile response times)
+- Reports any errors encountered
+
+## Expected Output
+
+The test will show:
+- Total requests sent
+- Number of successful/failed requests
+- Response time statistics
+- Any errors that occurred
+
+This lightweight test provides a baseline performance measurement for the Sauce Demo site without requiring heavy dependencies or complex frameworks.
+
 
