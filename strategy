@@ -1,0 +1,28 @@
+Test Strategy
+
+In order to facilitate a successful product launch, I have authored our test strategy for the next 6 to 12 months (resource dependent). 
+
+Scope - Testing will cover the user facing website (https://sauce-demo.myshopify.com/), API and the Agent integration. 
+
+High level guidelines
+Verify Features, API contracts and Agent are ready for end users
+Test for edge cases, common attack vectors and possible feature misses by using the applications as a user would
+Integration points for performance and hand off integrity
+Performance testing against agreed upon targets, scaling if budget allows
+
+Preferred Environment Set up
+Dev - Development Environment for uninterrupted development
+QA - Test Environment (QA will deploy new code here)
+UAT - Staging for PROD deployments, User showcase/testing environment.
+PROD - Production - Final deployment step after UAT signoff
+
+Code Path
+Developers will own the code merging process, unit testing and code review. Once code is ready for deployment, it will be deployed to the QA environment where it will need to pass automated tests as part of the deployment process. Should this deployment fail, dev and qa will work together to resolve the issue. Once code is successfully deployed to the QA env, QA will be able to perform testing, author new automated tests if needed, ask for changes/report issues and finally give sign off and deploy the code to UAT.
+
+Data
+Data will need to be randomized and synthetic in all environments below production as the UI, API and agent are all open systems. Database access should be restricted in UAT and PROD to avoid data integrity issues.
+
+Risks
+As with any 3rd party service, our integrations with the open API and Agent will need to account for service outages and any security vulnerabilities the 3rd parties may have. The team will need to build adequate protections for any weak points in the integration paths. 
+
+I am concerned with denial of service attacks against the open web app UI and api. The agent has built in limiters to limit this attack vector.
