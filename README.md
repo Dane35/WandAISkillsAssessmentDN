@@ -1,40 +1,113 @@
 # WandAISkillsAssessmentDN
 Skills Assessment for WandAI prepared by Dane Nye
 
+# Sauce Demo E2E Tests
 
+Comprehensive end-to-end test suite for the Sauce Demo Shopify website using Playwright.
 
-Install Playwright:
+## Features Tested
 
-bash
+### ✅ Authentication
+- Valid login flow
+- Invalid credentials (negative test)
 
-pip install pytest-playwright
-playwright install-deps
-Save the tests to a file named test_sauce_demo.py
+### ✅ Shopping Cart & Checkout
+- Add items to cart
+- Proceed to checkout
+- Empty cart validation (negative test)
 
-Run the tests:
+### ✅ Product Operations
+- Filter products by collection
+- Sort products by price/name
+- Search functionality
 
-bash
+### ✅ CRUD Operations
+- Create: Add items to cart
+- Update: Modify item quantities
+- Delete: Remove items from cart
 
-pytest test_sauce_demo.py -v
-Test Descriptions
-Homepage Load Test - Verifies that the homepage loads correctly and displays key elements like products and navigation.
+### ✅ Accessibility
+- Axe-core WCAG 2.0 AA compliance scans
+- ARIA labels and roles validation
+- Semantic HTML structure checks
 
-Product Browsing Test - Tests navigation to the catalog and verifies that products are displayed with correct names and prices.
+### ✅ Edge Cases
+- Rapid cart additions
+- Form validation
+- Error handling
 
-Add to Cart Test - Tests the functionality of adding products to the shopping cart (implementation may need adjustment based on actual site behavior).
+## Setup
 
-About Us Page Test - Verifies navigation to and content of the About Us page.
+1. Install dependencies:
+```bash
+npm install
+```
 
-Search Functionality Test - Tests the site's search feature by searching for a term and verifying results.
+2. Install Playwright browsers:
+```bash
+npx playwright install
+```
 
-Notes
-Some tests may need adjustment based on the actual implementation details of the site
-The "Add to Cart" functionality test is partially implemented since the exact mechanism wasn't visible in the provided content
-All tests follow Playwright best practices with proper assertions and page object usage
-These tests provide a solid foundation for end-to-end testing of the Sauce Demo Shopify site and can be extended with additional scenarios as needed.
+## Running Tests
 
+Run all tests:
+```bash
+npm test
+```
 
+Run tests with UI:
+```bash
+npm run test:ui
+```
 
+Run tests in headed mode:
+```bash
+npm run test:headed
+```
+
+Run tests in debug mode:
+```bash
+npm run test:debug
+```
+View test report:
+```bash
+npm run report
+```
+
+## Test Structure
+
+```
+├── tests/
+│   └── sauce-demo.spec.ts     # Main test suite
+├── playwright.config.ts        # Playwright configuration
+├── package.json               # Dependencies and scripts
+└── README.md                  # This file
+```
+
+## Test Coverage
+
+- **Total Tests**: 12+
+- **Negative Tests**: 2 (invalid login, empty cart checkout)
+- **Accessibility Tests**: 3 (axe scans + ARIA validation)
+- **CRUD Tests**: 1 comprehensive test
+- **Filter/Sort Tests**: 2
+- **Edge Case Tests**: 2
+
+## CI/CD Integration
+
+The configuration includes CI-optimized settings:
+- Automatic retries on failure
+- JSON reporter for CI integration
+- Screenshots and videos on failure
+- Parallel execution control
+
+## Notes
+
+- Tests are designed to be resilient with proper waits and fallbacks
+- Accessibility tests use @axe-core/playwright for WCAG compliance
+- All tests include proper error handling for dynamic content
+- Tests are cross-browser compatible (Chromium, Firefox, WebKit)
+*/
 
 # HTTPBin API Tests
 
@@ -197,7 +270,7 @@ For issues with these tests, please check:
 
 **Happy Testing!** 🧪
 
-## How to Run the Performance
+## How to Run the Performance Test
 
 1. Save the code to a file (e.g., `performance_test.py`)
 2. Install required dependencies:
