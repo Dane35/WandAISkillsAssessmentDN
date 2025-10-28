@@ -3,6 +3,36 @@ Skills Assessment for WandAI prepared by Dane Nye
 
 
 
+Install Playwright:
+
+bash
+
+pip install pytest-playwright
+playwright install-deps
+Save the tests to a file named test_sauce_demo.py
+
+Run the tests:
+
+bash
+
+pytest test_sauce_demo.py -v
+Test Descriptions
+Homepage Load Test - Verifies that the homepage loads correctly and displays key elements like products and navigation.
+
+Product Browsing Test - Tests navigation to the catalog and verifies that products are displayed with correct names and prices.
+
+Add to Cart Test - Tests the functionality of adding products to the shopping cart (implementation may need adjustment based on actual site behavior).
+
+About Us Page Test - Verifies navigation to and content of the About Us page.
+
+Search Functionality Test - Tests the site's search feature by searching for a term and verifying results.
+
+Notes
+Some tests may need adjustment based on the actual implementation details of the site
+The "Add to Cart" functionality test is partially implemented since the exact mechanism wasn't visible in the provided content
+All tests follow Playwright best practices with proper assertions and page object usage
+These tests provide a solid foundation for end-to-end testing of the Sauce Demo Shopify site and can be extended with additional scenarios as needed.
+
 
 
 
