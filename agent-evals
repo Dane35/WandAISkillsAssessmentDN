@@ -1,1 +1,15 @@
+Agent: https://poe.com/ running Llama 4 Scout B10
 
+Prompts
+IN: What are you best at
+Expected out: Summary of top ten skills
+
+IN: What are the differences between Bluetooth and Bluetooth Low Energy?
+Expected out: Summary of the differences between the two
+
+IN: Can you cite your sources? (in reference to the previous prompt
+Out: Sources
+
+IN: 
+
+https://poe.com/s/5bkpFd0rQJVcqLtKGItw
